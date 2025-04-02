@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark: #1e1e1e;
+    --lighter:#2c2c2c;
+    --button:  #D2042D;
+    --button-hover: #E01E3A;
+    --transition :.4s all;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark);
+}
+
+.container {
+    padding: 12px;
+    height: 97vh;
+    width: 97vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: var(--lighter); */
+}
+
+.head {
+    /* background-color: #fff; */
+    height: 26vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #333 ;
+}
+
+.txt {
+    font-family: sans-serif;
+}
+
+form {
+    height: 40%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input {
+    height: 70%;
+    width: 27vw;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-size: 16px;
+    padding: 0 2%;
+    background-color: var(--lighter);
+}
+
+/* input:focus {
+    border: 1px solid var(--button-hover);
+} */
+
+form input[type='submit'] {
+    width: 15%;
+    font-weight: 550;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    background-color: var(--button);
+    margin-left: -15%;
+    transition: var(--transition);
+    border: none;
+
+}
+
+form input[type='submit']:hover {
+    background-color: var(--button-hover);
+}
+
+
+.hymn-display {
+    width: 70%;
+    height: 65vh;
+    background-color: #fff;
+    margin-top: 2%;
+    overflow: auto;
+    padding: 10px;
+}
+
+.hymn-header {
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+    height: 10vh;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.hymn-name {
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-family: monospace;
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.hymn-area {
+    margin-top: 1%;
+    /* background-color: blue */
+    height: 83%;
+    width: 100%;
+}
