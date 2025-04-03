@@ -1,43 +1,56 @@
-import { hymns } from './hymns.js';
+import { hymns } from './hymns.js'; //import hymns from hymn.js
 
+
+//select elememnts from DOM
 let form = document.querySelector('form');
 let input = document.getElementById('input');
+let hymnContainer = document.getElementById('hymn-area');
+let hymnTitle = document.getElementById('hymn-title');
+let hymnName = document.getElementById('hymn-name');
 
-displayHymn(hymns[0]);
+//display hymn on PAGE LOAD
+displayHymn(hymns[0]); // Display the first hymn by default
 
-// console.log(hymns);
 
+//SUBMIT EVENT search for hymn in hymn.js 
 form.addEventListener('submit', (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    console.log('linked')
+    let hymnNumber = parseInt(input.value.trim()); // Convert input to number
+
+    // Find the hymn
+    let hymn = hymns.find(h => h.number === hymnNumber);
+
+    //checks if hymn exists in hymns.js
+    if (hymn) {
+        displayHymn(hymn);
+    } else {
+        hymnContainer.innerHTML = `<p class="error">Hymn ${hymnNumber} not found.</p>`;
+        hymnName.textContent = "";
+    }
+
+    form.reset(); // clear input field
+
+});
 
 
-})
-
+// function to display hymns from search or page load
 function displayHymn(hymn) {
-    let hymnContainer = document.getElementById('hymn-area');
-    let hymnTitle = document.getElementById('hymn-title');
-    let hymnName = document.getElementById('hymn-name');
-
-    // Clear previous content
-    hymnContainer.innerHTML = '';
     hymnContainer.innerHTML = `
-        <p class="hymn-title" id="hymn-title">${hymn.title}</p>
+        <p class="hymn-title">${hymn.title}</p>
     `;
 
-    // Create hymn content
     hymn.lyrics.forEach(stanza => {
-        let stanzaDiv = document.createElement('div'); // Create a div for each stanza
+        let stanzaDiv = document.createElement('div');
         stanzaDiv.className = 'verse';
 
         stanza.forEach(line => {
-            let p = document.createElement('p'); // Create a paragraph for each line
+            let p = document.createElement('p');
             p.textContent = line;
             stanzaDiv.appendChild(p);
         });
 
-        hymnContainer.appendChild(stanzaDiv); // Append each stanza div to the main container
+        hymnContainer.appendChild(stanzaDiv);
     });
 
     hymnName.textContent = `Hymn ${hymn.number}`;
