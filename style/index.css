@@ -44,6 +44,7 @@ body {
 
 .txt {
     font-family: sans-serif;
+    color: #E01E3A;
 }
 
 form {
@@ -110,9 +111,10 @@ form input[type='submit']:hover {
 .hymn-name {
     text-transform: capitalize;
     letter-spacing: 1px;
-    font-family: monospace;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bolder;
     font-size: 2rem;
+    color: #E01E3A;
 }
 
 .hymn-area {
