@@ -67,10 +67,6 @@ form input {
     background-color: var(--lighter);
 }
 
-/* input:focus {
-    border: 1px solid var(--button-hover);
-} */
-
 form input[type='submit'] {
     width: 15%;
     font-weight: 550;
@@ -92,11 +88,29 @@ form input[type='submit']:hover {
 .hymn-display {
     width: 70%;
     height: 65vh;
-    background-color: #fff;
+    /* background-color: #fff; */
     margin-top: 2%;
     overflow: auto;
     padding: 10px;
+    color: #cdcdcd;
+    
 }
+
+.hymn-display::-webkit-scrollbar {
+    width: 12px; /* Slim scrollbar */
+}
+
+.hymn-display::-webkit-scrollbar-track {
+    background: var(--dark); /* Background color */
+    border-radius: 10px;
+}
+
+.hymn-display::-webkit-scrollbar-thumb {
+    background: #333; 
+    border-radius: 1px;
+    transition: var(--transition);
+}
+
 
 .hymn-header {
     /* background-color: pink; */
@@ -105,6 +119,7 @@ form input[type='submit']:hover {
     height: 10vh;
     align-items: center;
     border-bottom: 1px solid #333;
+    color: #a5a3a3;
 }
 
 .hymn-name {
@@ -116,8 +131,23 @@ form input[type='submit']:hover {
 }
 
 .hymn-area {
+    padding: 10px;
     margin-top: 1%;
-    /* background-color: blue */
-    height: 83%;
+    background-color: blue;
+    height: 80%;
     width: 100%;
+}
+
+.hymn-title {
+    text-transform: capitalize;
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 1.6rem;
+    color: #a5a3a3;
+}
+
+.verse p {
+    font-size: 18px;
+    margin-left: 3%;
+    margin-top: 2%;
 }
