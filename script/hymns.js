@@ -44,7 +44,7 @@ export const hymns = [
                 "And grace my fears relieved;",
                 "How precious did that grace appear",
                 "The hour I first believed."
-            ]
+            ],
         ]
     },
     {
