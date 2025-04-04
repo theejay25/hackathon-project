@@ -135,7 +135,7 @@ form input[type='submit']:hover {
 .hymn-area {
     padding: 10px;
     margin-top: 1%;
-    background-color: blue;
+    /* background-color: blue; */
     height: 80%;
     width: 100%;
 }
@@ -152,4 +152,8 @@ form input[type='submit']:hover {
     font-size: 18px;
     margin-left: 3%;
     margin-top: 2%;
+}
+
+.verse {
+    margin-bottom: 50px;
 }
