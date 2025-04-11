@@ -1,57 +1,64 @@
-import { hymns } from './hymns.js'; //import hymns from hymn.js
+import { hymns } from "./hymns.js";
 
+const form = document.getElementById("search-form");
+const input = document.getElementById("input");
+const hymnContainer = document.getElementById("hymn-area");
+const hymnName = document.getElementById("hymn-name");
+const hymnListContainer = document.getElementById("hymn-list-container");
+const overlay = document.getElementById("hymn-overlay");
+const closeBtn = document.getElementById("close-btn");
 
-//select elememnts from DOM
-let form = document.querySelector('form');
-let input = document.getElementById('input');
-let hymnContainer = document.getElementById('hymn-area');
-let hymnTitle = document.getElementById('hymn-title');
-let hymnName = document.getElementById('hymn-name');
-
-//display hymn on PAGE LOAD
-displayHymn(hymns[0]); // Display the first hymn by default
-
-
-//SUBMIT EVENT search for hymn in hymn.js 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    let hymnNumber = parseInt(input.value.trim()); // Convert input to number
-
-    // Find the hymn
-    let hymn = hymns.find(h => h.number === hymnNumber);
-
-    //checks if hymn exists in hymns.js
-    if (hymn) {
-        displayHymn(hymn);
-    } else {
-        hymnContainer.innerHTML = `<p class="error">Hymn ${hymnNumber} not found.</p>`;
-        hymnName.textContent = "";
-    }
-
-    form.reset(); // clear input field
-
-});
-
-
-// function to display hymns from search or page load
+// Show the overlay with selected hymn
 function displayHymn(hymn) {
-    hymnContainer.innerHTML = `
-        <p class="hymn-title">${hymn.title}</p>
-    `;
+  hymnContainer.innerHTML = "";
+  hymnName.textContent = `Hymn ${hymn.number}: ${hymn.title}`;
 
-    hymn.lyrics.forEach(stanza => {
-        let stanzaDiv = document.createElement('div');
-        stanzaDiv.className = 'verse';
+  hymn.lyrics.forEach((stanza) => {
+    const stanzaDiv = document.createElement("div");
+    stanzaDiv.className = "verse";
 
-        stanza.forEach(line => {
-            let p = document.createElement('p');
-            p.textContent = line;
-            stanzaDiv.appendChild(p);
-        });
-
-        hymnContainer.appendChild(stanzaDiv);
+    stanza.forEach((line) => {
+      const p = document.createElement("p");
+      p.textContent = line;
+      stanzaDiv.appendChild(p);
     });
 
-    hymnName.textContent = `Hymn ${hymn.number}`;
+    hymnContainer.appendChild(stanzaDiv);
+  });
+
+  overlay.style.display = "flex";
 }
+
+// Generate list of titles
+function populateHymnList() {
+  hymnListContainer.innerHTML = "";
+  hymns.forEach((hymn) => {
+    const div = document.createElement("div");
+    div.className = "hymn-title-item";
+    div.textContent = `${hymn.number}. ${hymn.title}`;
+    div.addEventListener("click", () => displayHymn(hymn));
+    hymnListContainer.appendChild(div);
+  });
+}
+
+// Handle search
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const query = input.value.trim().toLowerCase();
+  const hymn = hymns.find((h) => h.title.toLowerCase() === query);
+
+  if (hymn) {
+    displayHymn(hymn);
+  } else {
+    alert(`Hymn "${query}" not found`);
+  }
+  input.value = "";
+});
+
+// Close overlay
+closeBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+});
+
+// Init
+populateHymnList();
